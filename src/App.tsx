@@ -8,6 +8,7 @@ import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import Home from "./pages/Dashboard/Home";
 import Sale from "./pages/Dashboard/Sale";
+import Order from "./pages/Order/Order";
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
             <Route path="/sale" element={<Sale />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/blank" element={<Blank />} />
+            <Route path="/order" element={<Order />} />
 
             {/* Tables */}
             <Route path="/basic-tables" element={<BasicTables />} />
