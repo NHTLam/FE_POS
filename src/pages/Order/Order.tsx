@@ -46,10 +46,9 @@ const orders = [
 ];
 
 export default function OrderDashboard() {
-  const [open, setOpen] = useState(false);
 
   return (
-    <div className="bg-gray-100 min-h-screen p-6">
+    <div className="min-h-screen p-6">
       {/* Header */}
       <div className="flex justify-between items-center mb-6 flex-wrap gap-4">
         <div className="flex items-center gap-4 flex-wrap">
@@ -78,7 +77,7 @@ export default function OrderDashboard() {
             className="px-4 py-2 border rounded-lg w-72 focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
           <button 
-            onClick={() => setOpen(true)}
+            
             className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
           >
             + Create New Order
@@ -92,13 +91,12 @@ export default function OrderDashboard() {
           <OrderCard key={order.id} order={order} />
         ))}
       </div>
-
-      {open && <DetailModal onClose={() => setOpen(false)} />}
     </div>
   );
 }
 
 function OrderCard({ order }: { order: typeof orders[0] }) {
+  const [open, setOpen] = useState(false);
   const total = order.items.reduce((acc, item) => acc + item.price, 0);
 
   return (
@@ -159,13 +157,16 @@ function OrderCard({ order }: { order: typeof orders[0] }) {
 
       {/* Actions */}
       <div className="flex gap-3">
-        <button className="flex-1 border rounded-lg py-2 text-sm hover:bg-gray-50">
+        <button 
+          onClick={() => setOpen(true)}
+          className="flex-1 border rounded-lg py-2 text-sm hover:bg-gray-50">
           See Details
         </button>
         <button className="flex-1 bg-gray-200 text-gray-400 rounded-lg py-2 text-sm cursor-not-allowed">
           Pay Bills
         </button>
       </div>
+      {open && <DetailModal onClose={() => setOpen(false)} />}
     </div>
   );
 }
