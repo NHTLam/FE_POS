@@ -15,11 +15,11 @@ export default function Sale() {
       <div className="grid grid-cols-12 gap-4 md:gap-6">
         <div className="col-span-12 space-y-6 xl:col-span-8">
           <SaleMetrics />
-          <div className="flex gap-4 md:gap-6 w-full">
-            <div className="flex-1">
+          <div className="flex flex-col md:flex-row gap-4 md:gap-6 w-full">
+            <div className="w-full md:flex-1">
               <InProgressOrder />
             </div>
-            <div className="flex-1">
+            <div className="w-full md:flex-1">
               <WaittingForPaymentOrder />
             </div>
           </div>
