@@ -79,7 +79,7 @@ export default function Order() {
             placeholder="Search Order ID or Customer Name"
             className="px-4 py-2 border rounded-lg w-72 focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
-          <button 
+          <button
             onClick={() => setOpen(true)}
             className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
           >

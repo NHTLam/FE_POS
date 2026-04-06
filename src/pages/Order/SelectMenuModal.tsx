@@ -5,7 +5,7 @@ import OrderSummaryModal from "./OrderSummaryModal";
 
 export default function SelectMenuModal({ onClose }: { onClose: () => void }) {
     const [activeTab, setActiveTab] = useState("All");
-    const [isModalOpen, setIsModalOpen] = useState(true);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const tabs = ["All", "Chef Recommendation", "Soup", "Noodle", "Rice", "Dessert"];
 
@@ -180,7 +180,8 @@ export default function SelectMenuModal({ onClose }: { onClose: () => void }) {
 
                             <button
                                 onClick={() => setIsModalOpen(true)}
-                                className="w-full bg-blue-600 text-white py-2 rounded-lg">Continue</button>
+                                className="w-full bg-blue-600 text-white py-2 rounded-lg">Continue
+                            </button>
 
                             <OrderSummaryModal
                                 isOpen={isModalOpen}

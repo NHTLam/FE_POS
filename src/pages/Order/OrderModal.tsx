@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Legend } from "./Legend";
 import OrderPopup from "./SelectMenuModal";
+import { NavTable } from "../../components/tables/NavTable";
+import { ListTable } from "../../components/tables/ListTable";
 
 export function OrderModal({ onClose }: { onClose: () => void; }) {
   const [open, setOpen] = useState(false);
@@ -25,46 +26,13 @@ export function OrderModal({ onClose }: { onClose: () => void; }) {
           </button>
         </div>
 
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between bg-gray-100 px-3 py-2 rounded-2xl w-full sm:w-fit shadow-sm gap-2">
-          {/* Legend */}
-          <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-gray-600">
-            <Legend color="bg-gray-300" label="Available" />
-            <Legend color="bg-yellow-400" label="Not Available" />
-            <Legend color="bg-gray-800" label="Reserved" />
-            <Legend color="bg-gray-400" label="Can’t Select" />
-          </div>
+        <NavTable
+          floors={floors}
+          activeFloor={activeFloor}
+          setActiveFloor={setActiveFloor}
+        />
 
-          {/* Tabs */}
-          <div className="flex bg-white rounded-full p-1 shadow-inner w-full sm:w-auto overflow-x-auto">
-            {floors.map((floor) => (
-              <button
-                key={floor}
-                onClick={() => setActiveFloor(floor)}
-                className={`whitespace-nowrap px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm transition
-                ${activeFloor === floor
-                    ? "bg-gray-200 text-black font-medium"
-                    : "text-gray-400"
-                  }`}
-              >
-                {floor}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Layout giống ảnh (grid bàn) */}
-        <div className="grid grid-cols-4 gap-4 mb-6 mt-4">
-          {["A4", "A5", "A8", "A9", "A10", "A11", "A12", "A13"].map(
-            (table, index) => (
-              <div
-                key={index}
-                className="border rounded-xl h-20 flex items-center justify-center hover:bg-blue-100 cursor-pointer"
-              >
-                {table}
-              </div>
-            )
-          )}
-        </div>
+        <ListTable />
 
         {/* Bottom action bar */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-2">
