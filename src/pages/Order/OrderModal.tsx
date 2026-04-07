@@ -2,6 +2,7 @@ import { useState } from "react";
 import OrderPopup from "./SelectMenuModal";
 import { NavTable } from "../../components/tables/NavTable";
 import { ListTable } from "../../components/tables/ListTable";
+import { Footer } from "../../components/tables/Footer";
 
 export function OrderModal({ onClose }: { onClose: () => void; }) {
   const [open, setOpen] = useState(false);
@@ -34,21 +35,13 @@ export function OrderModal({ onClose }: { onClose: () => void; }) {
 
         <ListTable />
 
-        {/* Bottom action bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-2">
-          <span className="bg-white px-3 py-2 border rounded-full text-center sm:text-left">
-            Table A8
-          </span>
-          <button className="bg-white px-3 py-2 border rounded-full w-full sm:w-auto">
-            Info Reservation
-          </button>
-          <button
-            onClick={() => setOpen(true)}
-            className="bg-blue-500 text-white px-3 py-2 rounded-full w-full sm:w-auto"
-          >
-            Continue →
-          </button>
-        </div>
+        <Footer
+          selectedTable="Table A8"
+          onInfoReservation={() => {
+            // Add reservation info behavior here
+          }}
+          onContinue={() => setOpen(true)}
+        />
       </div>
       {open && <OrderPopup onClose={() => setOpen(false)} />}
     </div>

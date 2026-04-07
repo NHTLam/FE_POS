@@ -2,8 +2,13 @@ import { useState } from "react";
 import { NavTable } from "../../components/tables/NavTable";
 import { ListTable } from "../../components/tables/ListTable";
 import AddTableModal from "./AddTable";
+import { Footer } from "../../components/tables/Footer";
+import ReservationList from "../../components/reservation/ReservationList";
 
 export default function Table() {
+  const [selectedTable, setSelectedTable] = useState<string | null>(null);
+  const [showFooter, setShowFooter] = useState(false);
+  const [showReservation, setshowReservation] = useState(false);
   const [activeFloor, setActiveFloor] = useState("1st Floor");
   const floors = ["1st Floor", "2nd Floor", "3rd Floor"];
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -11,9 +16,13 @@ export default function Table() {
     console.log("Dữ liệu bàn mới:", data);
     // Gửi data lên server ở đây
   };
+  const handleSelectTable = (table: string) => {
+    setSelectedTable(table);
+    setShowFooter(true);
+  };
 
   return (
-    <div className="min-h-screen p-6">
+    <div className="relative min-h-screen p-6">
       {/* Header */}
       <div className="flex justify-between items-center mb-6 flex-wrap gap-4">
         <div className="flex items-center gap-4 flex-wrap">
@@ -41,7 +50,18 @@ export default function Table() {
         </div>
       </div>
 
-      <ListTable />
+      <ListTable onSelectTable={handleSelectTable} />
+
+      <div className="fixed bottom-10 right-6">
+        {showFooter && 
+          <Footer
+            selectedTable={selectedTable}
+            onInfoReservation={() => setshowReservation(true)}
+            onContinue={() => {}}
+          />}
+      </div>
+
+      { showReservation && <ReservationList /> }
     </div>
   );
 }
