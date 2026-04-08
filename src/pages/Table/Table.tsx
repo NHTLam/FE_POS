@@ -61,7 +61,9 @@ export default function Table() {
           />}
       </div>
 
-      { showReservation && <ReservationList /> }
+      { showReservation && <ReservationList 
+        isOpen={showReservation}
+        onClose={() => setshowReservation(false)}/> }
     </div>
   );
 }
